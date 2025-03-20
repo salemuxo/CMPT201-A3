@@ -19,6 +19,18 @@
  * STRUCTS AS NEEDED.
  */
 
+typedef struct {
+    // TODO: add stuff
+} Table;
+
+typedef struct {
+    // TODO: add stuff
+} NeighbourhoodTable;
+
+typedef struct {
+    // TODO: add stuff
+} PicnicTable;
+
 /*
  * The INIT_SIZE is only relevant if you are using arrays for your data structures. 
  * If you are using linked lists you will not need it
