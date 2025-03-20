@@ -4,8 +4,8 @@
  * in this file.
  *
  * Author: <TODO: Group Member Names>
- * Lab instructor: <TODO: Your lab instructor's name here>
- * Lecture instructor: <TODO: Your lecture instructor's name here>
+ * Lab instructor: Salwa Abougamila
+ * Lecture instructor: Ardy RD
  */
 
 #include "DB.h"      /* Import the public database header. */
