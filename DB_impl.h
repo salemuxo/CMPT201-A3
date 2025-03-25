@@ -13,8 +13,20 @@
  */
 
 
+#include "DB.h"
 #ifndef DB_IMPL_H
 #define DB_IMPL_H
 
+Table* create_table(char** values, int size);
+
+void free_table(Table* table);
+
+Neighbourhood* create_neighbourhood(int id, char* name);
+
+void free_neighbourhood(Neighbourhood* neighbourhood);
+
+NeighbourhoodTable* create_neighbourhood_table(Neighbourhood* neighbourhoods, int size);
+
+void free_neighbourhood_table(NeighbourhoodTable* table);
 
 #endif

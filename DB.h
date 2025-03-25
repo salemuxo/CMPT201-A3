@@ -19,16 +19,52 @@
  * STRUCTS AS NEEDED.
  */
 
-typedef struct {
-    // TODO: add stuff
+ /*
+ Struct to represent a lookup table. 
+
+ Fields:
+    char** values: the values to hold in the lookup table
+    int size: the number of values in the lookup table
+ */
+ typedef struct {
+    char** values;
+    int size;
 } Table;
 
+/*
+Struct to represent a neighbourhood with an ID and name.
+
+Fields:
+    int id: the id associated with the neighbourhood from the given data
+    char* name: the name of the neighbourhood
+*/
 typedef struct {
-    // TODO: add stuff
+    int id;
+    char* name;
+} Neighbourhood;
+
+/*
+Struct to represent the table of neighbourhoods and IDs. 
+
+Fields:
+    Neighbourhood*: the neighbourhoods to hold in the table
+    int size: the number of values in the table
+*/
+typedef struct {
+    Neighbourhood* neighbourhoods;
+    int size;
 } NeighbourhoodTable;
 
 typedef struct {
-    // TODO: add stuff
+    int sideID;
+    int tableTypeID;
+    int surfaceMaterialID;
+    int structuralMaterialID;
+    char* streetAvenue;
+    int neighbourhoodID;
+    int ward;
+    double latitude;
+    double longitude;
 } PicnicTable;
 
 /*
@@ -115,6 +151,5 @@ void reportByWard();
  * Frees all dynamic memory associated with each table upon exit. 
  */
 void freeDB();
-
 
 #endif
