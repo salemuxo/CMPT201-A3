@@ -7,7 +7,7 @@
  * It is a common convention to append "_impl" to a private implementation of
  * some public interface, so we do so here.
  *
- * Author: <TODO: Group Member Names>
+ * Author: Salem, Berhan, Benjamin, Jonathan
  * Lab instructor: Salwa Abougamila
  * Lecture instructor: Ardy RD
  */
@@ -17,7 +17,7 @@
 #ifndef DB_IMPL_H
 #define DB_IMPL_H
 
-Table* create_table(char** values, int size);
+Table* create_table(int size, char* value, ...);
 
 void free_table(Table* table);
 

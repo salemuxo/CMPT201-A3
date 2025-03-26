@@ -3,7 +3,7 @@
  * TODO: Provide a high-level description of what is contained
  * in this file.
  *
- * Author: <TODO: Group Member Names>
+ * Author: Salem, Berhan, Benjamin, Jonathan
  * Lab instructor: Salwa Abougamila
  * Lecture instructor: Ardy RD
  */

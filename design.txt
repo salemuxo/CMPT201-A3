@@ -1,0 +1,16 @@
+Our team has divided the work into four phases, each assigned to a team member.
+
+1. Salem (Due March 29) is responsible for designing and implementing the required data structures.
+    a) Ensure an efficient structure for quick retrieval and modification
+    b) Manage memory dynamically to handle different dataset sizes
+
+2. Berhan (Due March 31) will work on reading the CSV file and importing it into the appropriate data structures.
+    a) Ensure data consistency between lookup tables and main table 
+
+3. Benjamin (Due April 2) will handle accessing and modifying the data structure.
+    a) Validate data modifications to avoid inconsistencies
+    b) Update tables dynamically
+
+4. Jonathan (Due April 4) will implement the interactive dashboard.
+    a) Implement a user-friendly command-line interface
+    b) Ensure operations like sorting and editing work smoothly
