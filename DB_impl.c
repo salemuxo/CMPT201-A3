@@ -8,7 +8,7 @@
  * Lecture instructor: Ardy RD
  */
 
-#include "DB.h"      /* Import the public database header. */
+#include "DB.h"      
 #include <stdlib.h>
 #include <string.h>
 #include <stdarg.h>
