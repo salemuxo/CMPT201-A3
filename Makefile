@@ -30,4 +30,4 @@ testImport: testing/test_importDB.c DB.o DB_impl.o
 	$(CC) $(CFLAGS) -o testing/test_import testing/test_importDB.c DB.o DB_impl.o
 
 clean:
-	rm dashboard *.o testing/test*Out
+	rm dashboard *.o testing/test*Out testing/testNeighbourhood testing/test_import testing/testTable
