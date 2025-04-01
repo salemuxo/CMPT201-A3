@@ -136,7 +136,6 @@ void sortByMember(char *memberName);
  */
 void editTableEntry(int tableID, char *memberName, char *value);
 
-
 /*
  * print a listing of picnic tables grouped by neigbourhoods in ascending 
  * alphabetical order.

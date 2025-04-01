@@ -27,6 +27,15 @@ Returns: Table* - the pointer to the created table
 */
 Table* create_table(unsigned int size);
 
+/*
+Purpose: Adds a value to a table
+
+Parameters:
+    Table* table: the table to add to
+    char* value: the value to add
+
+Returns: None
+*/
 void add_to_table(Table* table, char* value);
 
 /*

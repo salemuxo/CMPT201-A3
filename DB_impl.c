@@ -23,6 +23,7 @@ Table* create_table(unsigned int size)
     Table* create = malloc(sizeof(Table));
     if (create == NULL)
     {
+        fprintf(stderr, "Memory allocation failed.");
         return NULL;
     }
 
@@ -30,6 +31,7 @@ Table* create_table(unsigned int size)
     create->values = calloc(size, sizeof(char*));
     if (create->values == NULL)
     {
+        fprintf(stderr, "Memory allocation failed.");
         free(create);
         return NULL;
     }
@@ -50,6 +52,7 @@ void add_to_table(Table* table, char* value)
     table->values[table->size] = malloc(strlen(value) + 1);
     if (table->values[table->size] == NULL)
     {
+        fprintf(stderr, "Memory allocation failed.");
         return;
     }
 
@@ -102,6 +105,7 @@ Neighbourhood* create_neighbourhood(unsigned int id, char* name)
     create->name = malloc(strlen(name) + 1);
     if (create->name == NULL)
     {
+        fprintf(stderr, "Memory allocation failed.");
         free(create);
         return NULL;
     }
@@ -121,10 +125,16 @@ NeighbourhoodTable* create_neighbourhood_table(unsigned int capacity)
     NeighbourhoodTable* create = malloc(sizeof(NeighbourhoodTable));
     if (create == NULL)
     {
+        fprintf(stderr, "Memory allocation failed.");
         return NULL;
     }
 
     create->neighbourhoods = calloc(capacity, sizeof(Neighbourhood*));
+    if (create->neighbourhoods == NULL)
+    {
+        fprintf(stderr, "Memory allocation failed.");
+        return NULL;
+    }
 
     create->size = 0;
     create->capacity = capacity;
@@ -227,7 +237,7 @@ void importDB(const char *filename) { //-Berhan
 
     FILE *file = fopen(filename, "r");// opens the csv file in read mode
     if (!file) {
-        printf("Error: Could not open file %s\n", filename);//error message if file can't be opened
+        fprintf(stderr, "Error: Could not open file %s\n", filename);//error message if file can't be opened
         return;
     }
 
@@ -328,6 +338,7 @@ void importDB(const char *filename) { //-Berhan
         pt->streetAvenue = malloc(strlen(street) + 1); 
         if (pt->streetAvenue == NULL)
         {
+            fprintf(stderr, "Memory allocation failed.");
             return;
         }
         strcpy(pt->streetAvenue, street);
