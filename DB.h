@@ -29,6 +29,7 @@
  typedef struct {
     char** values;
     unsigned int size;
+    unsigned int capacity;
 } Table;
 
 /*
@@ -68,11 +69,6 @@ typedef struct {
     double longitude;
 } PicnicTable;
 
-typedef struct {
-    PicnicTable** picnicTables;
-    int size;
-} PicnicTableTable;
-
 /*
  * The INIT_SIZE is only relevant if you are using arrays for your data structures. 
  * If you are using linked lists you will not need it
@@ -90,7 +86,7 @@ typedef struct {
     Table *surfaceMaterialTable;
     Table *structuralMaterialTable;
     NeighbourhoodTable *neighborhoodTable;
-    PicnicTableTable *picnicTableTable;
+    PicnicTable **picnicTableTable;
 } DataBase;
 
 /* Declare a global DataBase variable*/
@@ -139,7 +135,6 @@ void sortByMember(char *memberName);
  * corresponding table.
  */
 void editTableEntry(int tableID, char *memberName, char *value);
-
 
 
 /*

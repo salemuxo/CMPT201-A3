@@ -4,7 +4,11 @@
 
 int main()
 {
-    Table* tableTypeTable = create_table(3, "Other Table", "Round Picnic Table", "Square Picnic Table");
+    Table* tableTypeTable = create_table(3);
+
+    add_to_table(tableTypeTable, "Other Table");
+    add_to_table(tableTypeTable, "Round Picnic Table");
+    add_to_table(tableTypeTable, "Square Picnic Table");
 
     printf("ID: %d, Value: %s\n", lookup_by_value(tableTypeTable, "Other Table"), lookup_by_id(tableTypeTable, 0));
     printf("ID: %d, Value: %s\n", lookup_by_value(tableTypeTable, "Round Picnic Table"), lookup_by_id(tableTypeTable, 1));

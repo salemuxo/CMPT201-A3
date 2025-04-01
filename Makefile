@@ -14,7 +14,7 @@ DB.o: DB.c
 DB_impl.o: DB_impl.c
 	$(CC) $(CFLAGS) -c DB_impl.c
 
-testing: testTable testNeighbourhood
+testing: testTable testNeighbourhood testImport
 
 testTable: testing/testTable.c DB.o DB_impl.o
 	$(CC) $(CFLAGS) -o testing/testTable testing/testTable.c DB.o DB_impl.o

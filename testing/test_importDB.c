@@ -8,10 +8,10 @@ int main() {
 
     // print the first 10 picnic table entries to check if everything looks good
     for (int i = 0; i < 10; i++) {
-        PicnicTable pt = Db->picnicTableTable[i];
+        PicnicTable *pt = Db->picnicTableTable[i];
 
         printf("Site ID: %d | Street: %s | Ward: %d | Lat: %.4f | Lon: %.4f\n",
-            pt.sideID, pt.streetAvenue, pt.ward, pt.latitude, pt.longitude);
+            pt->sideID, pt->streetAvenue, pt->ward, pt->latitude, pt->longitude);
     }
 
     // print size of each lookup table to make sure they were filled
