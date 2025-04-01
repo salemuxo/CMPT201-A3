@@ -28,6 +28,7 @@ testNeighbourhood: testing/testNeighbourhood.c DB.o DB_impl.o
 
 testImport: testing/test_importDB.c DB.o DB_impl.o
 	$(CC) $(CFLAGS) -o testing/test_import testing/test_importDB.c DB.o DB_impl.o
+	./testing/test_import > testing/testImportOut
 
 clean:
 	rm dashboard *.o testing/test*Out testing/testNeighbourhood testing/test_import testing/testTable

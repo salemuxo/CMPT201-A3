@@ -1,7 +1,7 @@
 /* DB_impl.c
  *
  * TODO: Provide a high-level description of what is contained
- * in this file.
+ * 
  *
  * Author: Salem, Berhan, Benjamin, Jonathan
  * Lab instructor: Salwa Abougamila
@@ -15,7 +15,6 @@
 #include <stdio.h>
 
 DataBase *Db = NULL;  // Defining database struct -Berhan
-#define DB_ALLOC_SIZE 2000 // i was going to change INIT_SIZE due to it givng me a segmentation dump error but we arent allowed to change it so i created this variable to set my own size
 
 Table* create_table(unsigned int size)
 {
@@ -239,7 +238,7 @@ int lookupOrAdd(char *value, Table *table) { //-Berhan
 
 int getOrAddNeighbourhood(int id, char *name, NeighbourhoodTable *ntable) { //-Berhan
     /// this loops throguh the id's in the table to the input id and if they match i return it
-    if (strcmp(get_neighbourhood_by_id(ntable, id), name) == 0)
+    if (get_neighbourhood_by_id(ntable, id) != NULL)
     {
         return id;
     }
