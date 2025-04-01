@@ -14,10 +14,14 @@ DB.o: DB.c
 DB_impl.o: DB_impl.c
 	$(CC) $(CFLAGS) -c DB_impl.c
 
-testing: testTable
+testing: testTable testImport
+
 
 testTable: testing/testTable.c DB.o DB_impl.o
 	$(CC) $(CFLAGS) -o testing/testTable testing/testTable.c DB.o DB_impl.o 
+testImport: testing/test_importDB.c DB.o DB_impl.o
+	$(CC) $(CFLAGS) -o testing/test_import testing/test_importDB.c DB.o DB_impl.o
+
 
 clean:
-	rm dashboard *.o
+	rm -f dashboard *.o testing/testTable testing/test_import

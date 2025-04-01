@@ -29,4 +29,6 @@ NeighbourhoodTable* create_neighbourhood_table(Neighbourhood* neighbourhoods, in
 
 void free_neighbourhood_table(NeighbourhoodTable* table);
 
+
+void importDB(const char *filename);
 #endif
