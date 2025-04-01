@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-Wall -std=c99
+CFLAGS=-Wall -std=c99 -ggdb
 LDFLAGS=-lm 
 
 dashboard: dashboard.o DB.o DB_impl.o
@@ -14,14 +14,20 @@ DB.o: DB.c
 DB_impl.o: DB_impl.c
 	$(CC) $(CFLAGS) -c DB_impl.c
 
-testing: testTable testImport
-
+testing: testTable testNeighbourhood
 
 testTable: testing/testTable.c DB.o DB_impl.o
-	$(CC) $(CFLAGS) -o testing/testTable testing/testTable.c DB.o DB_impl.o 
+	$(CC) $(CFLAGS) -o testing/testTable testing/testTable.c DB.o DB_impl.o
+	./testing/testTable > testing/testTableOut
+	diff testing/testTableOut testing/correctTable
+
+testNeighbourhood: testing/testNeighbourhood.c DB.o DB_impl.o
+	$(CC) $(CFLAGS) -o testing/testNeighbourhood testing/testNeighbourhood.c DB.o DB_impl.o
+	./testing/testNeighbourhood > testing/testNeighbourhoodOut
+	diff testing/testNeighbourhoodOut testing/correctNeighbourhood
+
 testImport: testing/test_importDB.c DB.o DB_impl.o
 	$(CC) $(CFLAGS) -o testing/test_import testing/test_importDB.c DB.o DB_impl.o
 
-
 clean:
-	rm -f dashboard *.o testing/testTable testing/test_import
+	rm dashboard *.o testing/test*Out

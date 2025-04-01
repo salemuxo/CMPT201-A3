@@ -28,7 +28,7 @@
  */
  typedef struct {
     char** values;
-    int size;
+    unsigned int size;
 } Table;
 
 /*
@@ -39,7 +39,7 @@ Fields:
     char* name: the name of the neighbourhood
 */
 typedef struct {
-    int id;
+    unsigned int id;
     char* name;
 } Neighbourhood;
 
@@ -51,8 +51,9 @@ Fields:
     int size: the number of values in the table
 */
 typedef struct {
-    Neighbourhood* neighbourhoods;
-    int size;
+    Neighbourhood** neighbourhoods;
+    unsigned int size;
+    unsigned int capacity;
 } NeighbourhoodTable;
 
 typedef struct {
@@ -66,6 +67,11 @@ typedef struct {
     double latitude;
     double longitude;
 } PicnicTable;
+
+typedef struct {
+    PicnicTable** picnicTables;
+    int size;
+} PicnicTableTable;
 
 /*
  * The INIT_SIZE is only relevant if you are using arrays for your data structures. 
@@ -84,7 +90,7 @@ typedef struct {
     Table *surfaceMaterialTable;
     Table *structuralMaterialTable;
     NeighbourhoodTable *neighborhoodTable;
-    PicnicTable *picnicTableTable;
+    PicnicTableTable *picnicTableTable;
 } DataBase;
 
 /* Declare a global DataBase variable*/
