@@ -44,11 +44,13 @@ Table* create_table(unsigned int size)
 
 void add_to_table(Table* table, char* value)
 {
+    // if table is full, dont add
     if (table->size >= table->capacity)
     {
         return;
     }
- 
+    
+    // allocate memory for value
     table->values[table->size] = malloc(strlen(value) + 1);
     if (table->values[table->size] == NULL)
     {
@@ -56,31 +58,37 @@ void add_to_table(Table* table, char* value)
         return;
     }
 
+    // copy value to table
     strcpy(table->values[table->size], value);
     table->size++;
 }
 
 void free_table(Table* table)
 {
+    // free each value
     for (int i = 0; i < table->size; i++)
     {
         free(table->values[i]);
     }
+    // free array and table
     free(table->values);
     free(table);
 }
 
 char* lookup_by_id(Table* table, unsigned int id)
 {
-    if (table->capacity <= id) 
+    // if id is outside table, return null
+    if (table->size <= id) 
     {
         return NULL;
     }
+
     return table->values[id];
 }
 
 int lookup_by_value(Table* table, char* value)
 {
+    // if string exists, return index
     for (int i = 0; i < table->size; i++)
     {
         if (strcmp(table->values[i], value) == 0)
@@ -89,19 +97,23 @@ int lookup_by_value(Table* table, char* value)
         }
     }
 
+    // if not found, return -1
     return -1;
 }
 
 Neighbourhood* create_neighbourhood(unsigned int id, char* name)
 {
+    // allocate memory for neighbourhood struct
     Neighbourhood* create = malloc(sizeof(Neighbourhood));
     if (create == NULL)
     {
+        fprintf(stderr, "Memory allocation failed.");
         return NULL;
     }
 
     create->id = id;
 
+    // allocate memory and copy name
     create->name = malloc(strlen(name) + 1);
     if (create->name == NULL)
     {
@@ -122,6 +134,7 @@ void free_neighbourhood(Neighbourhood* neighbourhood)
 
 NeighbourhoodTable* create_neighbourhood_table(unsigned int capacity)
 {
+    // allocate memory for table
     NeighbourhoodTable* create = malloc(sizeof(NeighbourhoodTable));
     if (create == NULL)
     {
@@ -129,6 +142,7 @@ NeighbourhoodTable* create_neighbourhood_table(unsigned int capacity)
         return NULL;
     }
 
+    // allocate memory for array
     create->neighbourhoods = calloc(capacity, sizeof(Neighbourhood*));
     if (create->neighbourhoods == NULL)
     {
@@ -136,6 +150,7 @@ NeighbourhoodTable* create_neighbourhood_table(unsigned int capacity)
         return NULL;
     }
 
+    // initialize size and capacity
     create->size = 0;
     create->capacity = capacity;
 
@@ -144,24 +159,29 @@ NeighbourhoodTable* create_neighbourhood_table(unsigned int capacity)
 
 void free_neighbourhood_table(NeighbourhoodTable* table)
 {
+    // free all neighbourhoods
     for (int i = 0; i < table->size; i++)
     {
         free_neighbourhood(table->neighbourhoods[i]);
     }
+    // free array and table
     free(table->neighbourhoods);
     free(table);
 }
 
 void add_neighbourhood(NeighbourhoodTable* table, unsigned int id, char* name)
 {
+    // create the neighbourhood
     Neighbourhood* neighbourhood = create_neighbourhood(id, name);
 
+    // place it in the table
     table->neighbourhoods[table->size] = neighbourhood;
     table->size++;
 }
 
 char* get_neighbourhood_by_id(NeighbourhoodTable* table, unsigned int id)
 {
+    // search for matching id
     for (int i = 0; i < table->size; i++)
     {
         if (table->neighbourhoods[i]->id == id)
@@ -175,6 +195,7 @@ char* get_neighbourhood_by_id(NeighbourhoodTable* table, unsigned int id)
 
 int get_neighbourhood_by_name(NeighbourhoodTable* table, char* name)
 {
+    // search for matching name
     for (int i = 0; i < table->size; i++)
     {
         if (strcmp(table->neighbourhoods[i]->name, name) == 0)
@@ -182,7 +203,7 @@ int get_neighbourhood_by_name(NeighbourhoodTable* table, char* name)
             return table->neighbourhoods[i]->id;
         }
     }
-
+    // return -1 if not found
     return -1;
 }
 
