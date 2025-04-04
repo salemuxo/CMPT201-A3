@@ -22,7 +22,7 @@ Table* create_table(unsigned int size)
     Table* create = malloc(sizeof(Table));
     if (create == NULL)
     {
-        fprintf(stderr, "Memory allocation failed.");
+        fprintf(stderr, "Memory allocation failed.\n");
         return NULL;
     }
 
@@ -30,7 +30,7 @@ Table* create_table(unsigned int size)
     create->values = calloc(size, sizeof(char*));
     if (create->values == NULL)
     {
-        fprintf(stderr, "Memory allocation failed.");
+        fprintf(stderr, "Memory allocation failed.\n");
         free(create);
         return NULL;
     }
@@ -53,7 +53,7 @@ void add_to_table(Table* table, char* value)
     table->values[table->size] = malloc(strlen(value) + 1);
     if (table->values[table->size] == NULL)
     {
-        fprintf(stderr, "Memory allocation failed.");
+        fprintf(stderr, "Memory allocation failed.\n");
         return;
     }
 
@@ -106,7 +106,7 @@ Neighbourhood* create_neighbourhood(unsigned int id, char* name)
     Neighbourhood* create = malloc(sizeof(Neighbourhood));
     if (create == NULL)
     {
-        fprintf(stderr, "Memory allocation failed.");
+        fprintf(stderr, "Memory allocation failed.\n");
         return NULL;
     }
 
@@ -116,7 +116,7 @@ Neighbourhood* create_neighbourhood(unsigned int id, char* name)
     create->name = malloc(strlen(name) + 1);
     if (create->name == NULL)
     {
-        fprintf(stderr, "Memory allocation failed.");
+        fprintf(stderr, "Memory allocation failed.\n");
         free(create);
         return NULL;
     }
@@ -137,7 +137,7 @@ NeighbourhoodTable* create_neighbourhood_table(unsigned int capacity)
     NeighbourhoodTable* create = malloc(sizeof(NeighbourhoodTable));
     if (create == NULL)
     {
-        fprintf(stderr, "Memory allocation failed.");
+        fprintf(stderr, "Memory allocation failed.\n");
         return NULL;
     }
 
@@ -145,7 +145,7 @@ NeighbourhoodTable* create_neighbourhood_table(unsigned int capacity)
     create->neighbourhoods = calloc(capacity, sizeof(Neighbourhood*));
     if (create->neighbourhoods == NULL)
     {
-        fprintf(stderr, "Memory allocation failed.");
+        fprintf(stderr, "Memory allocation failed.\n");
         return NULL;
     }
 
@@ -218,6 +218,8 @@ void initializeDataBase(){ //-Berhan
     Db->neighborhoodTable = create_neighbourhood_table(500);
 
     Db->picnicTableTable = malloc(10000 * sizeof(PicnicTable)); // allocated memory to hold picninc table structs
+
+    Db->size = 0;
 }
 
 int lookupOrAdd(char *value, Table *table) { //-Berhan
@@ -257,14 +259,12 @@ void importDB(const char *filename) { //-Berhan
 
     FILE *file = fopen(filename, "r");// opens the csv file in read mode
     if (!file) {
-        fprintf(stderr, "Error: Could not open file %s\n", filename);//error message if file can't be opened
+        fprintf(stderr, "Error: Could not open file %s\n", filename);//error message if file can't be ope\nned
         return;
     }
 
     char line[1024]; // buffer to hold each line of the csv
     fgets(line, sizeof(line), file); //skips the first line since it's the csv header
-
-    int picnicIndex = 0;//this keeps track of how many picnic table entries we've added
 
     while (fgets(line, sizeof(line), file)) {
         
@@ -358,7 +358,7 @@ void importDB(const char *filename) { //-Berhan
         pt->streetAvenue = malloc(strlen(street) + 1); 
         if (pt->streetAvenue == NULL)
         {
-            fprintf(stderr, "Memory allocation failed.");
+            fprintf(stderr, "Memory allocation failed.\n");
             return;
         }
         strcpy(pt->streetAvenue, street);
@@ -368,11 +368,11 @@ void importDB(const char *filename) { //-Berhan
         pt->latitude = latitude; // latitude coordinate from csv
         pt->longitude = longitude; // longitiude coordinate from csv
 
-        Db->picnicTableTable[picnicIndex++] = pt; // store the entry in the array and move to the next index
+        Db->picnicTableTable[Db->size++] = pt; // store the entry in the array and move to the next index
 
     }
 
     fclose(file);
-    printf("Successfully imported %d picnic tables from %s\n", picnicIndex, filename); // i added this to make sure it was importing everything( i will only loop through the first 10 )
+    printf("Successfully imported %d picnic tables from %s\n", Db->size, filename); // i added this to make sure it was importing everything( i will only loop through the first 10 )
 }
 

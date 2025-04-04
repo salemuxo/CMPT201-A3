@@ -30,5 +30,10 @@ testImport: testing/test_importDB.c DB.o DB_impl.o
 	$(CC) $(CFLAGS) -o testing/test_import testing/test_importDB.c DB.o DB_impl.o
 	./testing/test_import > testing/testImportOut
 
+testCount: testing/testCount.c DB.o DB_impl.o
+	$(CC) $(CFLAGS) -o testing/testCount testing/testCount.c DB.o DB_impl.o
+	./testing/testCount > testing/testCountOut
+	diff testing/testCountOut testing/correctCount
+
 clean:
-	rm dashboard *.o testing/test*Out testing/testNeighbourhood testing/test_import testing/testTable
+	rm dashboard *.o testing/test*Out testing/testNeighbourhood testing/test_import testing/testTable testing/testCount

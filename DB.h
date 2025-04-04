@@ -87,6 +87,7 @@ typedef struct {
     Table *structuralMaterialTable;
     NeighbourhoodTable *neighborhoodTable;
     PicnicTable **picnicTableTable;
+    unsigned int size;
 } DataBase;
 
 /* Declare a global DataBase variable*/
@@ -108,7 +109,6 @@ extern DataBase *Db;
  *  5- Neighborhood Name
  *  6- Ward
  */
-
 int countEntries(char *memberName, char * value);
 
 /*

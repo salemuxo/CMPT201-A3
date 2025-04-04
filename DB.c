@@ -10,4 +10,94 @@
 
 #include "DB.h"       /* Import the public database header. */
 #include "DB_impl.h"  /* Import the private database header */
+#include <string.h>
+#include <stdlib.h>
+#include <stdio.h>
 
+int countEntries(char *memberName, char * value)
+{
+    unsigned int counter = 0;
+    // table type
+    if (strcmp(memberName, "tableTypeID") == 0)
+    {
+        // loop through picnic tables
+        for (unsigned int i = 0; i < Db->size; i++)
+        {
+            // if table type of current table matches value, increment counter
+            if (Db->picnicTableTable[i]->tableTypeID == atoi(value))
+            {
+                counter++;
+            }
+        }
+    }
+    // surface material
+    else if (strcmp(memberName, "surfaceMaterialID") == 0)
+    {
+        // loop through picnic tables
+        for (unsigned int i = 0; i < Db->size; i++)
+        {
+            // if table type of current table matches value, increment counter
+            if (Db->picnicTableTable[i]->surfaceMaterialID == atoi(value))
+            {
+                counter++;
+            }
+        }
+    }
+    // structural material
+    else if (strcmp(memberName, "structuralMaterialID") == 0)
+    {
+        // loop through picnic tables
+        for (unsigned int i = 0; i < Db->size; i++)
+        {
+            // if table type of current table matches value, increment counter
+            if (Db->picnicTableTable[i]->structuralMaterialID == atoi(value))
+            {
+                counter++;
+            }
+        }
+    }
+    // neighbourhood ID
+    else if (strcmp(memberName, "neighbourhoodID") == 0)
+    {
+        // loop through picnic tables
+        for (unsigned int i = 0; i < Db->size; i++)
+        {
+            // if table type of current table matches value, increment counter
+            if (Db->picnicTableTable[i]->neighbourhoodID == atoi(value))
+            {
+                counter++;
+            }
+        }
+    }
+    // neighbourhood name
+    else if (strcmp(memberName, "neighbourhood") == 0)
+    {
+        // loop through picnic tables
+        for (unsigned int i = 0; i < Db->size; i++)
+        {
+            // if table type of current table matches neighbourhood name corresponding to id, increment counter
+            if (Db->picnicTableTable[i]->neighbourhoodID == get_neighbourhood_by_name(Db->neighborhoodTable, value))
+            {
+                counter++;
+            }
+        }
+    }
+    // ward
+    else if (strcmp(memberName, "ward") == 0)
+    {
+        // loop through picnic tables
+        for (unsigned int i = 0; i < Db->size; i++)
+        {
+            // if table type of current table matches value, increment counter
+            if (Db->picnicTableTable[i]->ward == atoi(value))
+            {
+                counter++;
+            }
+        }
+    }
+    else
+    {
+        fprintf(stderr, "Member not found.\n");
+    }
+    return counter;
+}
