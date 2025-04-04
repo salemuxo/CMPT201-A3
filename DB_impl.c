@@ -215,7 +215,7 @@ void initializeDataBase(){ //-Berhan
 
     Db->structuralMaterialTable = create_table(5);
 
-    Db->neighborhoodTable = create_neighbourhood_table(500);
+    Db->neighbourhoodTable = create_neighbourhood_table(500);
 
     Db->picnicTableTable = malloc(10000 * sizeof(PicnicTable)); // allocated memory to hold picninc table structs
 
@@ -350,7 +350,7 @@ void importDB(const char *filename) { //-Berhan
         int tableTypeId = lookupOrAdd(tableType, Db->tableTypeTable); // checks if table type exists, adds if not, then returns the id
         int surfaceId = lookupOrAdd(surfaceMaterial, Db->surfaceMaterialTable); // same idea for surface material
         int structuralId = lookupOrAdd(structuralMaterial, Db->structuralMaterialTable); // same for structural material
-        getOrAddNeighbourhood(neighbourhoodId, neighbourhoodName, Db->neighborhoodTable); // makes sure the neighbourhood is in the table (adds it if not)
+        getOrAddNeighbourhood(neighbourhoodId, neighbourhoodName, Db->neighbourhoodTable); // makes sure the neighbourhood is in the table (adds it if not)
 
 
         PicnicTable *pt = malloc(sizeof(PicnicTable));// holds all info for one picnic table entry
