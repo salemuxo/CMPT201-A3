@@ -165,7 +165,7 @@ void sortByMember(char *memberName) {
     }
 
     else if (strcmp(memberName, "neighbourhoodID") == 0) {
-        compare = compareNeighbourgoodID;
+        compare = compareNeighbourhoodID;
     }
 
     //we'll need to be able to search a neighbourhood by either ID as above ^^^ or by name into ID as below
@@ -178,7 +178,7 @@ void sortByMember(char *memberName) {
     }
     else {
         //Member name doesn't match any of the above, either i've missed something or it's invalid
-        fprintf(stderr, "Invalid Sorting Member\m");
+        fprintf(stderr, "Invalid Sorting Member\n");
         return;
     }
 
@@ -186,107 +186,26 @@ void sortByMember(char *memberName) {
     qsort(Db->picnicTableTable, Db->size, sizeof(PicnicTable*), compare);
 }
 
-//Comparison Function for table type
-int compareTableType(const void* a, const void* b) {
-    //Cast from void* to PicnicTable and deference to get actual
-    const PicnicTable* tableA = *(const PicnicTable**)a;
-    const PicnicTable* tableB = *(const PicnicTable**)b;
-    //if result is negative, a comes before b
-    //if zero, equal
-    //if positive, a comes after b
-    return tableA->tableTypeID - tableB->tableTypeID;
-}
-
-//Comparison function for suface material
-int compareSurfaceMaterial(const void* a, const void* b) {
-    //Cast from void* to PicnicTable and deference to get actual
-    const PicnicTable* tableA = *(const PicnicTable**)a;
-    const PicnicTable* tableB = *(const PicnicTable**)b;
-    //if result is negative, a comes before b
-    //if zero, equal
-    //if positive, a comes after b
-    return tableA->surfaceMaterialID - tableB->surfaceMaterialID;
-}
-
-//Comparison function for structural material
-int compareStructuralMaterial(const void* a, const void* b) {
-    //Cast from void* to PicnicTable and deference to get actual
-    const PicnicTable* tableA = *(const PicnicTable**)a;
-    const PicnicTable* tableB = *(const PicnicTable**)b;
-    //if result is negative, a comes before b
-    //if zero, equal
-    //if positive, a comes after b
-    return tableA->structuralMaterialID - tableB->structuralMaterialID;
-}
-
-// Comparison function for neighbourhood ID
-int compareNeighbourhoodID(const void* a, const void* b) {
-    //Cast from void* to PicnicTable and deference to get actual
-    const PicnicTable* tableA = *(const PicnicTable**)a;
-    const PicnicTable* tableB = *(const PicnicTable**)b;
-    //if result is negative, a comes before b
-    //if zero, equal
-    //if positive, a comes after b
-    return tableA->neighbourhoodID - tableB->neighbourhoodID;
-}
-
-//compareNeighbourhoodName will need to use get_neighbourhood_by_id to compare properly (Convert Id into name)
-int compareNeighbourhoodName(const void* a, const void* b) {
-    //Cast from void* to PicnicTable and deference to get actual
-    const PicnicTable* tableA = *(const PicnicTable**)a;
-    const PicnicTable* tableB = *(const PicnicTable**)b;
-    const char* nameA = get_neighbourhood_by_id(Db->neighbourhoodTable, tableA->neighbourhoodID);
-    const char* nameB = get_neighbourhood_by_id(Db->neighbourhoodTable, tableB->neighbourhoodID);
-    //just use string compare to compare the literal name
-    return strcmp(nameA, nameB);
-}
-
-// Comparison function for ward
-int compareWard(const void* a, const void* b) {
-    //Cast from void* to PicnicTable and deference to get actual
-    const PicnicTable* tableA = *(const PicnicTable**)a;
-    const PicnicTable* tableB = *(const PicnicTable**)b;
-    //if result is negative, a comes before b
-    //if zero, equal
-    //if positive, a comes after b
-    return tableA->ward - tableB->ward;
-}
-
 //Function to free all dynamic memory
 void freeDB() {
     if (Db == NULL) return;
 
     //Free all PicnicTable Entries
-    for (unsigned int i = 0; i < DB->size; i++) {
-        if (Db->picknicTableTable [i] != NULL) {
-            free(Db->picnicTableTable[i]);
-        }
+    for (unsigned int i = 0; i < Db->size; i++) {
+        freePicnicTable(Db->picnicTableTable[i]);
+        
     }
     free(Db->picnicTableTable);
 
     //Free string tables and contents
     //Outsource to a helper function
-    freeStringTable(Db->tableTypeTable);
-    freeStringTable(Db->surfaceMaterialTable);
-    freeStringTable(Db->structuralMaterialTable);
-    freeStringTable(Db->neighbourhoodTable);
+    free_table(Db->tableTypeTable);
+    free_table(Db->surfaceMaterialTable);
+    free_table(Db->structuralMaterialTable);
+    free_neighbourhood_table(Db->neighbourhoodTable);
 
     //Free the DB structure itself
     free(Db);
     //prevent weird pointer
     Db = NULL;
-}
-
-//String table helper function
-static void freeStringTable(StringTable* table) {
-    if (table == NULL) return;
-
-    //free each string in table
-    for (unsigned int i = 0; i < table->size; i++) {
-        free(table->strings[i]);
-    }
-        //Free the array
-        free(table->strings);
-        //free the table structure
-        free(table);
 }

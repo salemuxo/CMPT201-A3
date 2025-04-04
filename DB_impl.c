@@ -206,6 +206,14 @@ int get_neighbourhood_by_name(NeighbourhoodTable* table, char* name)
     return -1;
 }
 
+void freePicnicTable(PicnicTable* table)
+{
+    if (table == NULL) return;
+    
+    free(table->streetAvenue);
+    free(table);
+}
+
 void initializeDataBase(){ //-Berhan   
     Db = malloc(sizeof(DataBase)); // allocates memory for the entire database structure
     
@@ -381,3 +389,68 @@ void importDB(const char *filename) { //-Berhan
     printf("Successfully imported %d picnic tables from %s\n", Db->size, filename); // i added this to make sure it was importing everything( i will only loop through the first 10 )
 }
 
+//Comparison Function for table type
+int compareTableType(const void* a, const void* b) {
+    //Cast from void* to PicnicTable and deference to get actual
+    const PicnicTable* tableA = *(const PicnicTable**)a;
+    const PicnicTable* tableB = *(const PicnicTable**)b;
+    //if result is negative, a comes before b
+    //if zero, equal
+    //if positive, a comes after b
+    return tableA->tableTypeID - tableB->tableTypeID;
+}
+
+//Comparison function for suface material
+int compareSurfaceMaterial(const void* a, const void* b) {
+    //Cast from void* to PicnicTable and deference to get actual
+    const PicnicTable* tableA = *(const PicnicTable**)a;
+    const PicnicTable* tableB = *(const PicnicTable**)b;
+    //if result is negative, a comes before b
+    //if zero, equal
+    //if positive, a comes after b
+    return tableA->surfaceMaterialID - tableB->surfaceMaterialID;
+}
+
+//Comparison function for structural material
+int compareStructuralMaterial(const void* a, const void* b) {
+    //Cast from void* to PicnicTable and deference to get actual
+    const PicnicTable* tableA = *(const PicnicTable**)a;
+    const PicnicTable* tableB = *(const PicnicTable**)b;
+    //if result is negative, a comes before b
+    //if zero, equal
+    //if positive, a comes after b
+    return tableA->structuralMaterialID - tableB->structuralMaterialID;
+}
+
+// Comparison function for neighbourhood ID
+int compareNeighbourhoodID(const void* a, const void* b) {
+    //Cast from void* to PicnicTable and deference to get actual
+    const PicnicTable* tableA = *(const PicnicTable**)a;
+    const PicnicTable* tableB = *(const PicnicTable**)b;
+    //if result is negative, a comes before b
+    //if zero, equal
+    //if positive, a comes after b
+    return tableA->neighbourhoodID - tableB->neighbourhoodID;
+}
+
+//compareNeighbourhoodName will need to use get_neighbourhood_by_id to compare properly (Convert Id into name)
+int compareNeighbourhoodName(const void* a, const void* b) {
+    //Cast from void* to PicnicTable and deference to get actual
+    const PicnicTable* tableA = *(const PicnicTable**)a;
+    const PicnicTable* tableB = *(const PicnicTable**)b;
+    const char* nameA = get_neighbourhood_by_id(Db->neighbourhoodTable, tableA->neighbourhoodID);
+    const char* nameB = get_neighbourhood_by_id(Db->neighbourhoodTable, tableB->neighbourhoodID);
+    //just use string compare to compare the literal name
+    return strcmp(nameA, nameB);
+}
+
+// Comparison function for ward
+int compareWard(const void* a, const void* b) {
+    //Cast from void* to PicnicTable and deference to get actual
+    const PicnicTable* tableA = *(const PicnicTable**)a;
+    const PicnicTable* tableB = *(const PicnicTable**)b;
+    //if result is negative, a comes before b
+    //if zero, equal
+    //if positive, a comes after b
+    return tableA->ward - tableB->ward;
+}

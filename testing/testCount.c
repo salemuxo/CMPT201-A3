@@ -33,4 +33,5 @@ int main()
     printf("08: %d\n", countEntries("ward", "08"));
     printf("10: %d\n", countEntries("ward", "10"));
 
+    freeDB();
 }

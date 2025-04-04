@@ -85,7 +85,7 @@ typedef struct {
     Table *tableTypeTable;
     Table *surfaceMaterialTable;
     Table *structuralMaterialTable;
-    NeighbourhoodTable *neighborhoodTable;
+    NeighbourhoodTable *neighbourhoodTable;
     PicnicTable **picnicTableTable;
     unsigned int size;
 } DataBase;

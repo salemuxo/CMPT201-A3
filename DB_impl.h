@@ -155,6 +155,8 @@ Returns: PicnicTable* - a pointer to the picnic table
 */
 PicnicTable* get_picnic_table_by_id(int tableID);
 
+void freePicnicTable(PicnicTable* table);
+
 /*
 Purpose: Initializes and allocates memory for the database
 
@@ -193,6 +195,18 @@ Paramters: filename - the name of the csv file
 Return: None
 */
 void importDB(const char *filename);
+
+int compareTableType(const void* a, const void* b);
+
+int compareSurfaceMaterial(const void* a, const void* b);
+
+int compareStructuralMaterial(const void* a, const void* b);
+
+int compareNeighbourhoodID(const void* a, const void* b);
+
+int compareNeighbourhoodName(const void* a, const void* b);
+
+int compareWard(const void* a, const void* b);
 
 
 #endif

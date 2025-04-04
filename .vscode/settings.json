@@ -1,5 +1,6 @@
 {
     "files.associations": {
-        "db_impl.h": "c"
+        "db_impl.h": "c",
+        "random": "c"
     }
 }

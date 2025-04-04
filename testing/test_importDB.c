@@ -18,7 +18,7 @@ int main() {
     printf("\nTable Type Count: %d\n", Db->tableTypeTable->size);
     printf("Surface Material Count: %d\n", Db->surfaceMaterialTable->size);
     printf("Structural Material Count: %d\n", Db->structuralMaterialTable->size);
-    printf("Neighbourhood Count: %d\n", Db->neighborhoodTable->size);
+    printf("Neighbourhood Count: %d\n", Db->neighbourhoodTable->size);
 
     return 0;
 }

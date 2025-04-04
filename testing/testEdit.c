@@ -20,4 +20,6 @@ int main()
     printf("Before: %d\n", get_picnic_table_by_id(500)->structuralMaterialID);
     editTableEntry(500, "structuralMaterialID", "2");
     printf("After: %d\n", get_picnic_table_by_id(500)->structuralMaterialID);
+
+    freeDB();
 }
