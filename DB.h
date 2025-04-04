@@ -58,7 +58,7 @@ typedef struct {
 } NeighbourhoodTable;
 
 typedef struct {
-    int sideID;
+    int siteID;
     int tableTypeID;
     int surfaceMaterialID;
     int structuralMaterialID;

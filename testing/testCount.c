@@ -9,14 +9,17 @@ int main()
     printf("\nTABLE TYPE\n");
     printf("0: %d\n", countEntries("tableTypeID", "0"));
     printf("1: %d\n", countEntries("tableTypeID", "1"));
+    printf("2: %d\n", countEntries("tableTypeID", "2"));
 
     printf("\nSURFACE MATERIAL\n");
     printf("0: %d\n", countEntries("surfaceMaterialID", "0"));
     printf("1: %d\n", countEntries("surfaceMaterialID", "1"));
+    printf("2: %d\n", countEntries("surfaceMaterialID", "2"));
 
     printf("\nSTRUCTURAL MATERIAL\n");
     printf("0: %d\n", countEntries("structuralMaterialID", "0"));
     printf("1: %d\n", countEntries("structuralMaterialID", "1"));
+    printf("2: %d\n", countEntries("structuralMaterialID", "2"));
 
     printf("\nNEIGHBOURHOOD ID\n");
     printf("6620: %d\n", countEntries("neighbourhoodID", "6620"));

@@ -11,7 +11,7 @@ int main() {
         PicnicTable *pt = Db->picnicTableTable[i];
 
         printf("Site ID: %d | Street: %s | Ward: %d | Lat: %.4f | Lon: %.4f\n",
-            pt->sideID, pt->streetAvenue, pt->ward, pt->latitude, pt->longitude);
+            pt->siteID, pt->streetAvenue, pt->ward, pt->latitude, pt->longitude);
     }
 
     // print size of each lookup table to make sure they were filled

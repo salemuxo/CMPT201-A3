@@ -95,9 +95,52 @@ int countEntries(char *memberName, char * value)
             }
         }
     }
+    // not found
     else
     {
         fprintf(stderr, "Member not found.\n");
     }
     return counter;
+}
+
+void editTableEntry(int tableID, char *memberName, char *value)
+{
+    PicnicTable* table = get_picnic_table_by_id(tableID);
+    int id = atoi(value);
+
+
+    // table type
+    if (strcmp(memberName, "tableTypeID") == 0)
+    {
+        // needs to be added
+        if (id >= Db->tableTypeTable->size)
+        {
+            add_to_table(Db->tableTypeTable, value);
+        }
+        table->tableTypeID = id;
+    }
+    // surface material
+    else if (strcmp(memberName, "surfaceMaterialID") == 0)
+    {
+        // needs to be added
+        if (id >= Db->surfaceMaterialTable->size)
+        {
+            add_to_table(Db->surfaceMaterialTable, value);
+        }
+        table->surfaceMaterialID = id;
+    }
+    // structural material
+    else if (strcmp(memberName, "structuralMaterialID") == 0)
+    {
+        // needs to be added
+        if (id >= Db->structuralMaterialTable->size)
+        {
+            add_to_table(Db->structuralMaterialTable, value);
+        }
+        table->structuralMaterialID = id;
+    }
+    else
+    {
+        fprintf(stderr, "Member not found.\n");
+    }
 }

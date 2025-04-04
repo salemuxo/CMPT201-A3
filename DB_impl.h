@@ -146,6 +146,16 @@ Returns: unsigned int - the id of the neighbourhood
 unsigned int get_neighbourhood_by_name(NeighbourhoodTable* table, char* name);
 
 /*
+Purpose: Returns a Picnic Table based on its ID in the database
+
+Parameters:
+    int tableID: the index of the table in the database
+
+Returns: PicnicTable* - a pointer to the picnic table
+*/
+PicnicTable* get_picnic_table_by_id(int tableID);
+
+/*
 Purpose: Initializes and allocates memory for the database
 
 Parameters: None

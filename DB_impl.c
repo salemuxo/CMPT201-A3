@@ -252,6 +252,11 @@ int getOrAddNeighbourhood(int id, char *name, NeighbourhoodTable *ntable) { //-B
     return id;
 }
 
+PicnicTable* get_picnic_table_by_id(int tableID)
+{
+    return Db->picnicTableTable[tableID];   
+}
+
 void importDB(const char *filename) { //-Berhan
 
     initializeDataBase(); // this sets up the database and allocates memory for all tables
@@ -350,7 +355,7 @@ void importDB(const char *filename) { //-Berhan
 
         PicnicTable *pt = malloc(sizeof(PicnicTable));// holds all info for one picnic table entry
 
-        pt->sideID = startingId; // this is the original id from the csv
+        pt->siteID = startingId; // this is the original id from the csv
         pt->tableTypeID = tableTypeId; // internal id for table type
         pt->surfaceMaterialID = surfaceId; // internal id for surface material
         pt->structuralMaterialID = structuralId; // internal id for structural material

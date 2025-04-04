@@ -14,7 +14,7 @@ DB.o: DB.c
 DB_impl.o: DB_impl.c
 	$(CC) $(CFLAGS) -c DB_impl.c
 
-testing: testTable testNeighbourhood testImport
+testing: testTable testNeighbourhood testImport testCount testEdit
 
 testTable: testing/testTable.c DB.o DB_impl.o
 	$(CC) $(CFLAGS) -o testing/testTable testing/testTable.c DB.o DB_impl.o
@@ -35,5 +35,10 @@ testCount: testing/testCount.c DB.o DB_impl.o
 	./testing/testCount > testing/testCountOut
 	diff testing/testCountOut testing/correctCount
 
+testEdit: testing/testEdit.c DB.o DB_impl.o
+	$(CC) $(CFLAGS) -o testing/testEdit testing/testEdit.c DB.o DB_impl.o
+	./testing/testEdit > testing/testEditOut
+	diff testing/testEditOut testing/correctEdit
+
 clean:
-	rm dashboard *.o testing/test*Out testing/testNeighbourhood testing/test_import testing/testTable testing/testCount
+	rm dashboard *.o testing/test*Out testing/testNeighbourhood testing/test_import testing/testTable testing/testCount testing/testEdit

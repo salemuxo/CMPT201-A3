@@ -3,14 +3,17 @@ Successfully imported 3186 picnic tables from dataset/PicnicTable.csv
 TABLE TYPE
 0: 70
 1: 3042
+2: 74
 
 SURFACE MATERIAL
 0: 2497
 1: 232
+2: 140
 
 STRUCTURAL MATERIAL
 0: 1012
 1: 1762
+2: 238
 
 NEIGHBOURHOOD ID
 6620: 122
